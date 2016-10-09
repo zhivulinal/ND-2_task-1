@@ -37,7 +37,7 @@ found.show()
 
 
 // Вернем покемона максимального уровеня 
-lost.max()
+console.log(lost.max())
 
 
 
