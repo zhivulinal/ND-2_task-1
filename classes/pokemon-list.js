@@ -28,7 +28,7 @@ module.exports = class PokemonList extends Array {
         
         console.log('Покемонов в списке: ' + this.length)
         
-        // Используем цикл: forEach и метод show импортированого класса Pokemon
+        // Используем цикл: forEach и метод show объекта Pokemon
         this.forEach(item => item.show())
     }
     
