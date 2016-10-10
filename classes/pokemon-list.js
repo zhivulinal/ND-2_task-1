@@ -1,6 +1,6 @@
-
 // Экспортируем класс Pokemon
-const Pokemon  = require('pokemon');
+const Pokemon  = require('./pokemon');
+
 /**
 * Создим класс PokemonList
 * Экземпляры этого класса
@@ -8,28 +8,28 @@ const Pokemon  = require('pokemon');
 * Для этого расширим объект Array
 */
 module.exports = class PokemonList extends Array {
+    
     constructor(...args) {
-        // Модифицируем args добавим к каждой ячейке ID
-        // используем valueOf класса Pokemon
-        super(...args.map(
-            item => new Pokemon(item.name, item.lvl)
-        ))
+        super(...args)
     }
     
     // Используем класс Pokemon для создания ячейки и присвоим ей ID
     add(name, lvl) {
-        this.push(new Pokemon(name, lvl))
+        
+        if(typeof(name) == 'object')
+            this.push(name)
+        else
+            this.push(new Pokemon(name, lvl))
     }
         
     // метод show , который выводит информацию о покемонах
     // и их общее количество в списке
-    show()
-    {
+    show() {
         
         console.log('Покемонов в списке: ' + this.length)
         
-        // Используем цикл: forEach и метод show класса Pokemon
-        this.forEach(item => new Pokemon(item.name, item.lvl).show())
+        // Используем цикл: forEach и метод show импортированого класса Pokemon
+        this.forEach(item => item.show())
     }
     
     remove(name) {
@@ -40,16 +40,13 @@ module.exports = class PokemonList extends Array {
         // Если покемон не найден
         if (index == -1) console.log('Нет покемона с таким именем')
         
-        // Вернем объект с данными удаляемой ячейки
-        return this.splice(index, 1).map(str => ({name: str.name, lvl: str.lvl}))
+        // Удалим и вернем объект удаляемого покемона
+        return this.splice(index, 1)[0]
     }
     
     max() {
         
         let lvl = Math.max(...this)
-        
-        // Выводит в консоль, но в видео было сказано вернуть объект
-        //return this.find(item => item.lvl === lvl ? new Pokemon(item.name, item.lvl).show() : null)
         
         return this.find(item => item.lvl === lvl)
     }

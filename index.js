@@ -2,17 +2,28 @@
 
 
 // Подключим класс
-const PokemonList = require('pokemon-list');
+const PokemonList = require('./classes/pokemon-list')
+const Pokemon     = require('./classes/pokemon')
+
+// Подключим список покемонов
+const pokemons    = require('./data/list')
 
 
-// Подключим списки покемонов
-const pokemones  = require('./data/lost')
+
+
+/**
+* Заполним список объектами покемонов
+*/
+const objects = pokemons.map(
+    obj => new Pokemon(obj.name, obj.lvl)
+)
+
 
 
 // Создаем два списка покемонов lost и found
 // Спасибо за прием с добавлением атрибутов 
-const lost = new PokemonList(...pokemones.slice(0, 4))
-const found = new PokemonList(...pokemones.slice(5, 10))
+const lost = new PokemonList(...objects.slice(0, 4))
+const found = new PokemonList(...objects.slice(5, 10))
 
 
 // Добавим покемонов с список lost

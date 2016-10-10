@@ -4,14 +4,8 @@
 module.exports = class Pokemon {
     
     constructor(name, lvl) {
-        
-        this.name = name;
-        this.lvl = lvl;
-        
-        if(typeof this.name == 'object') {
-            this.name = name[0].name;
-            this.lvl = name[0].lvl;
-        }
+        this.name = name
+        this.lvl = lvl
     }
     
     show() {
