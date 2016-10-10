@@ -9,15 +9,12 @@ const Pokemon     = require('./classes/pokemon')
 const pokemons    = require('./data/list')
 
 
-
-
 /**
 * Заполним список объектами покемонов
 */
 const objects = pokemons.map(
     obj => new Pokemon(obj.name, obj.lvl)
 )
-
 
 
 // Создаем два списка покемонов lost и found
@@ -49,45 +46,3 @@ found.show()
 
 // Вернем покемона максимального уровеня 
 console.log(lost.max())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
